@@ -1,0 +1,202 @@
+/* ===== My Info ===== */
+body{
+    background:#f8f5ff;
+    font-family:"맑은 고딕", sans-serif;
+    color:#444;
+    margin:0;
+    position:relative;
+}
+.wrapper{
+    width:900px;
+    margin:50px auto;
+    padding:40px;
+    background:white;
+    border-radius:25px;
+    box-shadow:0 15px 35px rgba(124,90,194,.12);
+}
+h1{
+    text-align:center;
+    color:#7c5ac2;
+    font-size:42px;
+    margin-bottom:50px;
+    letter-spacing:2px;
+}
+#my_info{
+    text-align:center;
+}
+
+#my_info h2{
+    margin-bottom:25px;
+}
+
+#my_info img{
+    display:block;
+    width:170px;
+    height:170px;
+    margin:0 auto 30px;
+    object-fit:cover;
+    border-radius:50%;
+    border:5px solid #d8c8ff;
+}
+
+#my_info table{
+    width:360px;
+    margin:0 auto;
+    border-collapse:separate;
+    border-spacing:0 14px;
+}
+
+#my_info tbody{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+#my_info tr{
+    display:flex;
+    align-items:center;
+}
+
+#my_info th{
+    width:90px;
+    text-align:left;
+    background:none;
+    color:#7c5ac2;
+    font-size:17px;
+    font-weight:bold;
+    padding:0;
+    border:none;
+}
+
+#my_info td{
+    flex:1;
+    background:#f5f0ff;
+    padding:12px 18px;
+    border-radius:25px;
+    color:#555;
+    border:none;
+    box-shadow:0 2px 8px rgba(124,90,194,.15);
+}
+/* 공통 카드 */
+
+.card{
+    background:#faf7ff;
+    border:1px solid #e4d9ff;
+    border-radius:18px;
+    padding:20px 25px;
+    margin-top:15px;
+    box-shadow:0 3px 10px rgba(124,90,194,.08);
+}
+
+.card h3{
+    color:#7c5ac2;
+    margin-bottom:10px;
+}
+
+.card span{
+    display:block;
+    margin-top:10px;
+    color:#888;
+    font-size:14px;
+}
+
+.card ul{
+    margin-left:20px;
+    line-height:2;
+}
+
+/* Skills */
+
+.skill-box{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:20px;
+}
+
+.skill-box span{
+    background:#f5f0ff;
+    color:#7c5ac2;
+    padding:10px 20px;
+    border-radius:25px;
+    font-weight:bold;
+    box-shadow:0 2px 8px rgba(124,90,194,.15);
+}
+
+/* About */
+
+#about p{
+    background:#faf7ff;
+    border-radius:18px;
+    padding:20px;
+    line-height:1.8;
+}
+
+/* 제목 */
+
+section{
+    margin-top:50px;
+}
+
+section h2{
+    display:inline-block;
+    color:#7c5ac2;
+    background:#f3ecff;
+    padding:8px 18px;
+    border-radius:20px;
+    margin-bottom:20px;
+}
+body::before{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    background:#eadfff;
+    border-radius:50%;
+    top:-120px;
+    right:-100px;
+    opacity:.4;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:250px;
+    height:250px;
+    background:#f0e8ff;
+    border-radius:50%;
+    bottom:-80px;
+    left:-80px;
+    opacity:.5;
+    z-index:-1;
+}
+/* ===== 상단 Profile ===== */
+
+.profile-container{
+    display:flex;
+    gap:40px;
+    align-items:center;
+    justify-content:space-between;
+}
+
+#my_info{
+    flex:1;
+}
+
+.intro{
+    flex:1;
+    min-height:430px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.intro h2{
+    margin-bottom:25px;
+}
+
+.intro p{
+    line-height:2;
+    font-size:16px;
+}
