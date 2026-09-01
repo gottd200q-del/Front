@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>점심 메뉴에 대하여</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FFF3E4;
+    --paper: #FFFFFF;
+    --ink: #3A2C1F;
+    --ink-soft: #7A6A56;
+    --line: #F0DDBF;
+    --accent: #E0622B;
+    --accent-dark: #B94E20;
+    --error: #C0392B;
+  }
+  *{ box-sizing: border-box; }
+  html, body{
+    margin:0; padding:0; height:100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding: 24px;
+  }
+  .card{
+    width:100%;
+    max-width: 440px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 40px 36px 36px;
+    box-shadow: 0 2px 0 var(--line);
+  }
+  .badge{
+    display:inline-block;
+    font-size: 13px;
+    color: var(--accent-dark);
+    background: #FDE7D5;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+  h1{
+    font-family: 'Gowun Batang', serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.35;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .desc{
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0 0 24px;
+  }
+  .rule{
+    border: none;
+    border-top: 1px dashed var(--line);
+    margin: 0 0 24px;
+  }
+  form{ display:flex; flex-direction:column; gap:20px; }
+  label{
+    display:block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  input[type="text"],
+  input[type="email"]{
+    width:100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+    outline: none;
+    transition: border-color .15s ease;
+  }
+  input:focus{
+    border-color: var(--accent);
+  }
+  .field-error{
+    font-size: 12px;
+    color: var(--error);
+    margin-top: 4px;
+    min-height: 16px;
+  }
+  button{
+    margin-top: 8px;
+    padding: 13px 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  button:hover{ background: var(--accent-dark); }
+  button:disabled{
+    background: #E6C4AC;
+    cursor: not-allowed;
+  }
+  .submit-error{
+    font-size: 13px;
+    color: var(--error);
+    margin-top: -8px;
+    display:none;
+  }
+
+  /* 완료 화면 */
+  .done{
+    display:none;
+    text-align:center;
+    padding: 12px 0 4px;
+  }
+  .done .mark{ font-size: 40px; margin-bottom: 16px; }
+  .done h2{
+    font-family: 'Gowun Batang', serif;
+    font-size: 22px;
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+  .done p{
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .card{ animation: rise .35s ease; }
+    @keyframes rise{
+      from{ opacity:0; transform: translateY(6px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+
+    <div id="formView">
+      <span class="badge">MT 점심 설문</span>
+      <h1>점심 메뉴에 대하여</h1>
+      <p class="desc">이번 MT에서 다 같이 먹을 점심 메뉴를 정하려고 해요.<br>먹고 싶은 메뉴를 자유롭게 적어 주세요.</p>
+      <hr class="rule">
+
+      <form id="requestForm" novalidate>
+        <div>
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" placeholder="홍길동" autocomplete="name">
+          <div class="field-error" id="nameError"></div>
+        </div>
+
+        <div>
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" placeholder="example@email.com" autocomplete="email">
+          <div class="field-error" id="emailError"></div>
+        </div>
+
+        <div>
+          <label for="menu">먹고 싶은 메뉴</label>
+          <input type="text" id="menu" name="menu" placeholder="예: 삼겹살, 파스타, 초밥...">
+          <div class="field-error" id="menuError"></div>
+        </div>
+
+        <div class="submit-error" id="submitError"></div>
+
+        <button type="submit" id="submitBtn">확인</button>
+      </form>
+    </div>
+
+    <div class="done" id="doneView">
+      <div class="mark">🍚</div>
+      <h2>いただきます~<br>慶州、ヤッホー！</h2>
+      <p>메뉴 신청이 정상적으로 접수되었습니다.</p>
+    </div>
+
+  </div>
+
+<script>
+  var form = document.getElementById('requestForm');
+  var submitBtn = document.getElementById('submitBtn');
+  var nameError = document.getElementById('nameError');
+  var emailError = document.getElementById('emailError');
+  var menuError = document.getElementById('menuError');
+  var submitError = document.getElementById('submitError');
+
+  function isValidEmail(value){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    nameError.textContent = '';
+    emailError.textContent = '';
+    menuError.textContent = '';
+    submitError.style.display = 'none';
+    submitError.textContent = '';
+
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var menu = document.getElementById('menu').value.trim();
+
+    var valid = true;
+    if (!name) {
+      nameError.textContent = '이름을 입력해 주세요.';
+      valid = false;
+    }
+    if (!email) {
+      emailError.textContent = '이메일을 입력해 주세요.';
+      valid = false;
+    } else if (!isValidEmail(email)) {
+      emailError.textContent = '올바른 이메일 형식으로 입력해 주세요.';
+      valid = false;
+    }
+    if (!menu) {
+      menuError.textContent = '먹고 싶은 메뉴를 입력해 주세요.';
+      valid = false;
+    }
+    if (!valid) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '처리 중...';
+
+    google.script.run
+      .withSuccessHandler(function(result){
+        if (result && result.success) {
+          document.getElementById('formView').style.display = 'none';
+          document.getElementById('doneView').style.display = 'block';
+        } else {
+          submitError.textContent = '오류가 발생했습니다: ' + (result && result.error ? result.error : '알 수 없는 오류');
+          submitError.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = '확인';
+        }
+      })
+      .withFailureHandler(function(err){
+        submitError.textContent = '전송에 실패했습니다: ' + err.message;
+        submitError.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = '확인';
+      })
+      .submitForm({ name: name, email: email, menu: menu });
+  });
+</script>
+
+</body>
+</html>
